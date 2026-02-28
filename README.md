@@ -72,7 +72,7 @@
   | Canal | Informação |
   |------|------------|
   | GitHub | https://github.com/GustavoCJSilva |
-  | LinkedIn | seu_link_aqui |
+  | LinkedIn | https://www.linkedin.com/in/gustavo-césar-526791311/ |
 
   ---
 
