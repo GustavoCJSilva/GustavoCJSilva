@@ -71,7 +71,7 @@
 
   | Canal | Informação |
   |------|------------|
-  | GitHub | seu_link_aqui |
+  | GitHub | https://github.com/GustavoCJSilva |
   | LinkedIn | seu_link_aqui |
 
   ---
