@@ -1,0 +1,114 @@
+using Microsoft.Data.SqlClient;
+
+string connectionString = "Server=.\\SQLEXPRESS;Database=master;Integrated Security=True;TrustServerCertificate=True;";
+
+using (SqlConnection conn = new SqlConnection(connectionString))
+{
+    conn.Open();
+    Console.WriteLine("Conexão aberta com sucesso!\n");
+
+    bool executando = true;
+
+    while (executando)
+    {
+        Console.WriteLine("\n===== MENU =====");
+        Console.WriteLine("1 - Listar todos");
+        Console.WriteLine("2 - Buscar por nome");
+        Console.WriteLine("3 - Inserir novo");
+        Console.WriteLine("4 - Atualizar registro");
+        Console.WriteLine("5 - Deletar registro");
+        Console.WriteLine("0 - Sair");
+        Console.Write("\nEscolha uma opção: ");
+        string opcao = Console.ReadLine();
+
+        switch (opcao)
+        {
+            // ── LISTAR ──
+            case "1":
+                Console.WriteLine("\nID | Nome     | Telefone");
+                Console.WriteLine("---|----------|------------");
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM NIO", conn))
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                        Console.WriteLine($"{reader["ID"]}  | {reader["Nome"],-8} | {reader["Telefone"]}");
+                }
+                break;
+
+            // ── BUSCAR ──
+            case "2":
+                Console.Write("Digite o nome para buscar: ");
+                string nomeBusca = Console.ReadLine();
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM NIO WHERE Nome LIKE @nome", conn))
+                {
+                    cmd.Parameters.AddWithValue("@nome", $"%{nomeBusca}%");
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        bool achou = false;
+                        while (reader.Read())
+                        {
+                            Console.WriteLine($"ID: {reader["ID"]} | Nome: {reader["Nome"]} | Telefone: {reader["Telefone"]}");
+                            achou = true;
+                        }
+                        if (!achou) Console.WriteLine("Nenhum registro encontrado.");
+                    }
+                }
+                break;
+
+            // ── INSERIR ──
+            case "3":
+                Console.Write("Nome: ");
+                string novoNome = Console.ReadLine();
+                Console.Write("Telefone: ");
+                string novoTel = Console.ReadLine();
+                using (SqlCommand cmd = new SqlCommand("INSERT INTO NIO (Nome, Telefone) VALUES (@nome, @tel)", conn))
+                {
+                    cmd.Parameters.AddWithValue("@nome", novoNome);
+                    cmd.Parameters.AddWithValue("@tel", novoTel);
+                    cmd.ExecuteNonQuery();
+                    Console.WriteLine("Inserido com sucesso!");
+                }
+                break;
+
+            // ── ATUALIZAR ──
+            case "4":
+                Console.Write("ID do registro para atualizar: ");
+                int idAtualizar = int.Parse(Console.ReadLine());
+                Console.Write("Novo nome: ");
+                string nomeAtualizar = Console.ReadLine();
+                Console.Write("Novo telefone: ");
+                string telAtualizar = Console.ReadLine();
+                using (SqlCommand cmd = new SqlCommand("UPDATE NIO SET Nome=@nome, Telefone=@tel WHERE ID=@id", conn))
+                {
+                    cmd.Parameters.AddWithValue("@nome", nomeAtualizar);
+                    cmd.Parameters.AddWithValue("@tel", telAtualizar);
+                    cmd.Parameters.AddWithValue("@id", idAtualizar);
+                    int linhas = cmd.ExecuteNonQuery();
+                    Console.WriteLine(linhas > 0 ? "Atualizado com sucesso!" : "❌ ID não encontrado.");
+                }
+                break;
+
+            // ── DELETAR ──
+            case "5":
+                Console.Write("ID do registro para deletar: ");
+                int idDeletar = int.Parse(Console.ReadLine());
+                using (SqlCommand cmd = new SqlCommand("DELETE FROM NIO WHERE ID=@id", conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", idDeletar);
+                    int linhas = cmd.ExecuteNonQuery();
+                    Console.WriteLine(linhas > 0 ? "Deletado com sucesso!" : "❌ ID não encontrado.");
+                }
+                break;
+
+            // ── SAIR ──
+            case "0":
+                executando = false;
+                Console.WriteLine("👋 Encerrando...");
+                break;
+
+            default:
+                Console.WriteLine("❌ Opção inválida!");
+                break;
+        }
+    }
+}
