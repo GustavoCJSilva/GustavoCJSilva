@@ -1,7 +1,7 @@
   <h1 align="center">Gustavo Cesar</h1>
 
   <p align="center">
-    Desenvolvedor focado em sistemas web, banco de dados e soluções em nuvem
+    Desenvolvedor focado em Back-End e banco de dados 
   </p>
 
   <p align="center">
@@ -25,7 +25,7 @@
 
   | Camada | Ferramentas e Tecnologias |
   |--------|---------------------------|
-  | Backend | Java e lógica de sistemas |
+  | Backend | Java e .NET |
   | Frontend | HTML, CSS e JavaScript |
   | Banco de dados | PostgreSQL |
   | Plataforma corporativa | Salesforce |
