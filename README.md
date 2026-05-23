@@ -1,7 +1,7 @@
   <h1 align="center">Gustavo Cesar</h1>
 
   <p align="center">
-    Desenvolvedor focado em Back-End e banco de dados 
+    Desenvolvedor focado em Front-End e banco de dados 
   </p>
 
   <p align="center">
