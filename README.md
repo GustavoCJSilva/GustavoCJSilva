@@ -1,7 +1,7 @@
   <h1 align="center">Gustavo Cesar</h1>
 
   <p align="center">
-    Desenvolvedor focado em Front-End e banco de dados 
+    Desenvolvedor Full - Stack IA 
   </p>
 
   <p align="center">
