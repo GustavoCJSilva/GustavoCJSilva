@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/gustavo-anime.jpg" alt="Gustavo Cesar em versão anime" width="220" />
+</p>
+
 <h1 align="center">Olá, eu sou o Gustavo Cesar 👋</h1>
 
 <p align="center">
