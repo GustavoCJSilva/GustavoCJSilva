@@ -154,6 +154,22 @@ flowchart TB
 
 ---
 
+## 🎸 Fora do código
+
+<p align="center">
+  <img src="assets/fora-do-codigo.svg" alt="Quando não estou programando: guitarra, RPG e Souls-like, jogos competitivos, leitura e estudo, artes marciais e luta" width="100%" />
+</p>
+
+| | |
+|---|---|
+| 🎸 **Guitarra** | Tocar é o meu jeito de desligar a cabeça depois de um dia de código |
+| 🔥 **RPG e Souls-like** | Gosto de jogo difícil: morrer, entender o padrão e tentar de novo, como num bom debug |
+| 🎮 **Jogos competitivos** | Estratégia, reflexo e trabalho em equipe |
+| 📚 **Leitura e estudo** | Sempre tem um livro ou um curso em andamento |
+| 🥋 **Artes marciais e luta** | Treino e estudo artes marciais: disciplina, constância e respeito |
+
+---
+
 ## 📈 Atividade no GitHub
 
 <p align="center">

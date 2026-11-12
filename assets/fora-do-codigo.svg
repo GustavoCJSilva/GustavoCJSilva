@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="260" viewBox="0 0 900 260" role="img" aria-label="Fora do código: guitarra, RPG e Souls-like, jogos competitivos, leitura e estudo, artes marciais e luta">
+  <title>Fora do código</title>
+  <defs>
+    <linearGradient id="fundo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="1" stop-color="#161b2e"/>
+    </linearGradient>
+    <linearGradient id="chama" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#eb6834"/>
+      <stop offset="1" stop-color="#eda100"/>
+    </linearGradient>
+    <radialGradient id="brilho" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#eda100" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#eda100" stop-opacity="0"/>
+    </radialGradient>
+    <style>
+      .cartao { fill: #1b2233; stroke: #2a3550; stroke-width: 1.5; }
+      .traco { fill: none; stroke: #c9d6f2; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+      .azul { fill: none; stroke: #2f81f7; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+      .rotulo { font: 600 15px 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; fill: #e6edf3; text-anchor: middle; }
+      .sub { font: 400 12px 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; fill: #8b949e; text-anchor: middle; }
+      .titulo { font: 700 20px 'Fira Code', Consolas, monospace; fill: #2f81f7; }
+      .estrela { fill: #c9d6f2; animation: piscar 3s ease-in-out infinite; }
+      .e2 { animation-delay: 1s; } .e3 { animation-delay: 2s; }
+      .fogo { transform-origin: 268px 128px; animation: tremer 1.2s ease-in-out infinite alternate; }
+      .icone { animation: flutuar 4s ease-in-out infinite; }
+      .i2 { animation-delay: .8s; } .i3 { animation-delay: 1.6s; } .i4 { animation-delay: 2.4s; } .i5 { animation-delay: 3.2s; }
+      @keyframes piscar { 0%, 100% { opacity: .2; } 50% { opacity: 1; } }
+      @keyframes tremer { from { transform: scale(1, 1); } to { transform: scale(.92, 1.08); } }
+      @keyframes flutuar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+      @media (prefers-reduced-motion: reduce) { .estrela, .fogo, .icone { animation: none; } }
+    </style>
+  </defs>
+
+  <rect width="900" height="260" rx="16" fill="url(#fundo)"/>
+  <circle class="estrela" cx="60" cy="30" r="1.6"/>
+  <circle class="estrela e2" cx="820" cy="40" r="1.8"/>
+  <circle class="estrela e3" cx="470" cy="22" r="1.4"/>
+  <circle class="estrela e2" cx="700" cy="24" r="1.2"/>
+  <circle class="estrela e3" cx="200" cy="20" r="1.3"/>
+  <text class="titulo" x="32" y="46">// quando não estou programando...</text>
+
+  <!-- 1. Guitarra -->
+  <g transform="translate(32 70)">
+    <rect class="cartao" width="152" height="160" rx="12"/>
+    <g class="icone">
+      <path class="azul" d="M95 22 l18 -12 M101 18 l6 4 M106 14 l6 4"/>
+      <path class="traco" d="M98 24 L70 62"/>
+      <path class="traco" d="M70 62 c-10 -10 -30 -6 -34 8 c-3 10 6 14 4 22 c-2 10 6 20 18 18 c10 -2 12 -12 20 -14 c12 -4 18 -18 8 -28 c-6 -6 -10 -4 -16 -6 z"/>
+      <circle class="azul" cx="60" cy="80" r="6"/>
+      <path class="traco" d="M50 92 l14 -14"/>
+    </g>
+    <text class="rotulo" x="76" y="130">Guitarra</text>
+    <text class="sub" x="76" y="148">riffs depois do deploy</text>
+  </g>
+
+  <!-- 2. RPG e Souls-like: espada fincada na fogueira -->
+  <g transform="translate(206 70)">
+    <rect class="cartao" width="152" height="160" rx="12"/>
+    <circle cx="62" cy="66" r="36" fill="url(#brilho)"/>
+    <g class="fogo">
+      <path d="M62 88 c-14 -6 -16 -20 -8 -30 c0 8 4 10 6 10 c-2 -12 4 -22 12 -26 c-2 10 4 14 6 22 c4 -4 4 -8 4 -10 c8 10 6 28 -10 34 z" fill="url(#chama)"/>
+    </g>
+    <path class="traco" d="M62 10 L62 70 M52 24 L72 24 M62 10 l-3 4 h6 z"/>
+    <path class="traco" d="M40 92 l44 0 M46 86 l32 12 M78 86 l-32 12"/>
+    <text class="rotulo" x="76" y="130">RPG e Souls-like</text>
+    <text class="sub" x="76" y="148">morrer, aprender, repetir</text>
+  </g>
+
+  <!-- 3. Jogos competitivos: controle -->
+  <g transform="translate(380 70)">
+    <rect class="cartao" width="152" height="160" rx="12"/>
+    <g class="icone i3">
+      <path class="traco" d="M44 46 h64 c14 0 22 14 24 30 c2 14 -10 22 -20 12 l-10 -10 h-52 l-10 10 c-10 10 -22 2 -20 -12 c2 -16 10 -30 24 -30 z"/>
+      <path class="azul" d="M50 58 v14 M43 65 h14"/>
+      <circle cx="98" cy="60" r="3.5" fill="#2f81f7"/>
+      <circle cx="108" cy="68" r="3.5" fill="#eb6834"/>
+      <circle cx="88" cy="68" r="3.5" fill="#1baf7a"/>
+      <circle cx="98" cy="76" r="3.5" fill="#eda100"/>
+    </g>
+    <text class="rotulo" x="76" y="130">Competitivo</text>
+    <text class="sub" x="76" y="148">só mais uma partida</text>
+  </g>
+
+  <!-- 4. Leitura e estudo: livro aberto -->
+  <g transform="translate(554 70)">
+    <rect class="cartao" width="152" height="160" rx="12"/>
+    <g class="icone i4">
+      <path class="traco" d="M76 40 c-12 -8 -28 -10 -42 -6 v50 c14 -4 30 -2 42 6 c12 -8 28 -10 42 -6 v-50 c-14 -4 -30 -2 -42 6 z M76 40 v50"/>
+      <path class="azul" d="M44 46 c8 -2 16 -1 24 2 M44 56 c8 -2 16 -1 24 2 M84 48 c8 -3 16 -4 24 -2 M84 58 c8 -3 16 -4 24 -2"/>
+    </g>
+    <text class="rotulo" x="76" y="130">Leitura e estudo</text>
+    <text class="sub" x="76" y="148">sempre um livro aberto</text>
+  </g>
+
+  <!-- 5. Artes marciais e luta: faixa amarrada -->
+  <g transform="translate(728 70)">
+    <rect class="cartao" width="140" height="160" rx="12"/>
+    <g class="icone i5">
+      <rect x="16" y="42" width="108" height="16" rx="4" fill="#0d1117" stroke="#c9d6f2" stroke-width="2.5"/>
+      <path d="M64 56 L44 96 L56 100 L72 60 Z" fill="#0d1117" stroke="#c9d6f2" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M76 56 L96 96 L84 100 L68 60 Z" fill="#0d1117" stroke="#c9d6f2" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M47 89 l10 4 M93 89 l-10 4" stroke="#e34948" stroke-width="4" stroke-linecap="round"/>
+      <rect x="58" y="38" width="24" height="24" rx="6" fill="#0d1117" stroke="#c9d6f2" stroke-width="2.5"/>
+      <path class="azul" d="M64 44 l12 12 M76 44 l-12 12" stroke-width="2"/>
+    </g>
+    <text class="rotulo" x="70" y="130">Artes marciais</text>
+    <text class="sub" x="70" y="148">disciplina e luta</text>
+  </g>
+</svg>
