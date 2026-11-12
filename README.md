@@ -161,7 +161,7 @@ flowchart TB
     <td width="42%" align="center">
       <img src="assets/gustavo-anime.jpg" alt="Gustavo em versão anime: setup com monitores de código, guitarra, kimono de faixa preta, luvas de luta e uma fogueira com espada" width="100%" />
     </td>
-    <td width="58%">
+<td width="58%">
 
 🎸 **Guitarra**: tocar é o meu jeito de desligar a cabeça depois de um dia de código.
 
@@ -173,8 +173,8 @@ flowchart TB
 
 🥋 **Artes marciais e luta**: treino e estudo artes marciais. Disciplina, constância e respeito.
 
-    </td>
-  </tr>
+</td>
+</tr>
 </table>
 
 ---
