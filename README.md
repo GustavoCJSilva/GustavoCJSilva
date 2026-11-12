@@ -38,48 +38,96 @@ const gustavo = {
 
 <p align="center">
   <img src="https://skillicons.dev/icons?i=java,dotnet,cs,php,python,nodejs&perline=6" alt="Backend" /><br/>
-  <img src="https://skillicons.dev/icons?i=html,css,js&perline=6" alt="Frontend" /><br/>
+  <img src="https://skillicons.dev/icons?i=react,ts,vite,html,css,js&perline=6" alt="Frontend" /><br/>
   <img src="https://skillicons.dev/icons?i=postgres,mysql,aws,git,github,vscode&perline=6" alt="Dados, cloud e ferramentas" />
 </p>
 
 | Camada | Tecnologias |
 |---|---|
 | **Backend** | Java · .NET / C# · PHP 8 · Node.js · Python |
-| **Frontend** | HTML5 · CSS3 · JavaScript (SPA sem framework) |
+| **Frontend** | React · TypeScript · Vite · HTML5 · CSS3 · JavaScript |
 | **Banco de dados** | PostgreSQL · MySQL / MariaDB — modelagem relacional e documentos JSON |
 | **Plataforma corporativa** | ![Salesforce](https://img.shields.io/badge/Salesforce-00A1E0?style=flat-square&logo=salesforce&logoColor=white) |
 | **Cloud & Deploy** | AWS (instâncias e deploy) · Hostinger · LiteSpeed/Apache |
-| **Integrações** | APIs REST · OAuth 2.0 · Webhooks com assinatura HMAC |
+| **Integrações** | APIs REST · OAuth 2.0 · Webhooks com assinatura HMAC · Login único (SSO) entre sistemas |
 
 ---
 
-## 🚀 Projeto em destaque — Sistema de Devoluções
+## 🚀 Projeto em destaque — Plataforma Feheros (3 sistemas em 1)
 
-> Sistema web em produção usado pela operação de e-commerce para controlar **devoluções de marketplaces**, conferência no CD, disputas, estoque Full e transferências. Ele substituiu uma planilha compartilhada.
+> Plataforma web em produção que reúne a operação da empresa num só lugar. Uma **central de acesso** com **login único** dá entrada a três sistemas: **Gestão Financeira**, **Importação** e **Devoluções**. Cada pessoa vê e entra só no que o setor dela libera, e a plataforma substituiu um conjunto de planilhas compartilhadas.
 
 ```mermaid
-flowchart LR
-    U["👤 Equipe<br/>(navegador)"] -->|HTTPS + cookie de sessão| SPA["SPA<br/>HTML · CSS · JS"]
-    SPA -->|JSON| API["API REST<br/>PHP 8.3"]
-    API --> DB[("MySQL")]
-    API --> FS["📎 Anexos<br/>fora do webroot"]
-    MP["🛒 Marketplaces<br/>Mercado Livre · Shopee · Amazon<br/>Magalu · Shein · TikTok Shop · Shopify"] -->|Webhooks| API
-    CRON["⏱️ Cron"] -->|sincronização| API
-    API -->|OAuth 2.0| MP
+flowchart TB
+    U["👤 Equipe<br/>(navegador)"] -->|HTTPS| P["🏠 Central de acesso<br/>login · setores · permissões"]
+
+    P -->|"bilhete assinado (HMAC, 60 s, uso único)"| GF
+    P -->|"bilhete assinado"| IMP
+    P -->|"bilhete assinado"| DEV
+
+    subgraph GF["💰 Gestão Financeira"]
+        GF_SPA["SPA React + TS"] -->|JSON| GF_API["API REST · PHP 8.3"]
+    end
+    subgraph IMP["🚢 Importação"]
+        IMP_SPA["SPA React + TS"] -->|JSON| IMP_API["API REST · PHP 8.3"]
+    end
+    subgraph DEV["↩️ Devoluções"]
+        DEV_SPA["SPA React + TS"] -->|JSON| DEV_API["API REST · PHP 8.3"]
+    end
+
+    GF_API --> DBF[("MySQL<br/>financeiro")]
+    IMP_API --> DBF
+    DEV_API --> DBD[("MySQL<br/>devoluções")]
+    IMP_API -. "gera contas a pagar,<br/>FINIMP e custo dos produtos" .-> GF_API
+
+    MP["🛒 Marketplaces<br/>Mercado Livre · Shopee · Amazon<br/>Magalu · Shein · TikTok Shop · Shopify"] -->|Webhooks| DEV_API
+    MP -->|repasses| GF_API
+    CRON["⏱️ Cron"] -->|sincronização e rotinas| GF_API
+    CRON --> DEV_API
 ```
+
+### 🏠 Central de acesso
 
 | Destaque | Como foi feito |
 |---|---|
-| 🔐 **Autenticação própria** | Sessões por token (cookie `HttpOnly`, `Secure`, `SameSite=Strict`), senhas com `password_hash` e bloqueio após tentativas erradas |
+| 🔑 **Login único (SSO)** | A pessoa entra uma vez só. A central emite um bilhete assinado com HMAC-SHA256, que vale 60 segundos e uma única vez; cada sistema confere a assinatura, o destino e se o bilhete já foi usado |
+| 🏢 **Acesso por setor** | Cada setor libera um conjunto de sistemas, e dá para liberar sistemas a mais para uma pessoa só. Quem não tem acesso é barrado mesmo digitando o endereço |
+| 🛡️ **Segurança** | Proteção CSRF, troca de senha obrigatória no primeiro acesso, bloqueio após 5 tentativas e sessões derrubadas quando o acesso muda |
+| 🚪 **Entrada de emergência** | Se a central ficar fora do ar, o administrador ainda entra com a senha local de cada sistema |
+
+### 💰 Gestão Financeira
+
+| Destaque | Como foi feito |
+|---|---|
+| 📒 **Contas a pagar e a receber** | Parcelamento, recorrência, baixa, estorno, transferência entre contas e anexos |
+| 📊 **Apuração DRE / DFC** | Plano de contas próprio, com resultado mensal, balanço e indicadores |
+| 🔮 **Fluxo de caixa projetado** | Visões anual, mensal e diária (calendário), período escolhido e meses passados com o realizado |
+| 🏦 **Empréstimos** | Contratos com parcelas, ligação automática às contas a pagar e gráfico do saldo devedor por banco |
+| 🛒 **Compras e conciliação** | Plano e pedidos de compra com aprovação e conciliação bancária por extrato |
+| 📥 **Importação de planilhas** | Leitura de `.xlsx` e XML direto no navegador, sem biblioteca externa |
+
+### 🚢 Importação
+
+| Destaque | Como foi feito |
+|---|---|
+| 📂 **Leitura do processo** | Lê de uma vez os arquivos do processo (XML da NF-e, planilhas de fechamento, DUIMP e conciliação) e preenche tudo |
+| 🧮 **Custo real por unidade** | Calcula II, IPI, PIS, COFINS e ICMS por dentro, rateia o custo pelos itens pelo CIF e chega ao custo real |
+| 🔗 **Integração com o financeiro** | Ao salvar, gera as contas a pagar, cria o FINIMP como empréstimo e atualiza o custo dos produtos |
+| 📈 **Payback** | Simulação mês a mês em 24 meses, considerando as parcelas do financiamento |
+| 📤 **Exportar e importar** | Gera `.xlsx` no navegador (zip + XML escritos à mão) com uma aba oculta que permite reimportar o processo |
+
+### ↩️ Devoluções
+
+| Destaque | Como foi feito |
+|---|---|
 | 👥 **Permissões por usuário** | Perfis admin e usuário, com permissões granulares (criar, editar, anexar, excluir, backup) |
 | ⚔️ **Concorrência otimista** | Detecta quando dois usuários editam o mesmo registro (HTTP 409) e evita sobrescrever dados |
-| 🖼️ **Anexos de imagem** | Upload com validação de tipo, redução automática no navegador, galeria, visualizador e download |
+| 🖼️ **Fotos e vídeos** | Upload em partes até 200 MB, redução automática de imagens no navegador, galeria e player |
 | 🔄 **Atualização em tempo real** | Todos os usuários veem as mudanças sem recarregar a página |
-| 🧹 **Retenção de dados** | Exclusão automática 60 dias após a conclusão, com aviso 5 dias antes e opção de fixar urgentes |
+| 🗄️ **Arquivamento** | Registros concluídos vão para o arquivo após 60 dias, com aviso antes, histórico de alterações e backup diário |
 | 🔌 **Camada de integrações** | Conectores plugáveis por marketplace, credenciais cifradas (AES-256-GCM), webhooks e upsert sem duplicar |
-| 📥 **Migração de dados** | Importação da planilha antiga em Python, com fotos baixadas e anexadas automaticamente |
 
-`PHP 8.3` `MySQL` `JavaScript` `Python` `Node.js` `REST` `OAuth 2.0` `HMAC` `AES-GCM`
+`PHP 8.3` `MySQL` `React` `TypeScript` `Vite` `Python` `Node.js` `REST` `SSO` `HMAC` `OAuth 2.0` `AES-GCM`
 
 ---
 
@@ -99,6 +147,7 @@ flowchart LR
 
 - [x] Colocar em produção um sistema completo, com front, API, banco e deploy
 - [x] Estruturar uma camada de integrações com marketplaces
+- [x] Unir vários sistemas numa plataforma só, com central de acesso e login único
 - [ ] Conectar as APIs de Mercado Livre, Shopee, Amazon e outros marketplaces
 - [ ] Aprofundar em arquitetura de software, testes automatizados e CI/CD
 - [ ] Consolidar carreira como desenvolvedor full-stack
