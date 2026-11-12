@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/gustavo.jpg" alt="Gustavo César" width="200" />
+</p>
+
 <h1 align="center">Hi, I'm Gustavo César 👋</h1>
 
 <p align="center">
@@ -17,7 +21,7 @@
 </p>
 
 <p align="center">
-  <a href="https://www.linkedin.com/in/gustavo-c%C3%A9sar-526791311/"><img src="https://img.shields.io/badge/LinkedIn-Gustavo%20C%C3%A9sar-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
+  <a href="https://zenitetechnology.com.br/en/"><img src="https://img.shields.io/badge/Portfolio-zenitetechnology.com.br-1d1b17?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Portfolio" /></a>`n  <a href="https://www.linkedin.com/in/gustavo-c%C3%A9sar-526791311/"><img src="https://img.shields.io/badge/LinkedIn-Gustavo%20C%C3%A9sar-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
   <a href="mailto:gustavocjsilva@outlook.com"><img src="https://img.shields.io/badge/Email-gustavocjsilva%40outlook.com-D14836?style=for-the-badge&logo=maildotru&logoColor=white" alt="Email" /></a>
 </p>
 
